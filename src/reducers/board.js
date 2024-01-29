@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initState } from "../utils/initialState.jsx";
+import { initiate } from "../utils/initialState.jsx";
 
 const initialState = {
-  value: initState(),
+  value: initiate(),
 };
 
 export const boardSlice = createSlice({
@@ -10,11 +10,11 @@ export const boardSlice = createSlice({
 
   initialState,
   reducers: {
-    addBoardToStore: (state, action) => {
+    updateBoard: (state, action) => {
       state.value.push(action.payload);
     },
   },
 });
 
-export const { addBoardToStore } = boardSlice.actions;
+export const { updateBoard } = boardSlice.actions;
 export default boardSlice.reducer;

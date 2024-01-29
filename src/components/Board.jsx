@@ -2,21 +2,31 @@ import React from "react";
 import styles from "../styles/Board.module.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { isValidElement, createElement } from "react";
+
+import Case from "./Case.jsx";
 
 const Board = () => {
-  const show = true;
   const initialBoard = useSelector((state) => state.board.value);
-  console.log(isValidElement(initialBoard[0]));
-  console.log("hey", typeof initialBoard);
+  console.log("init", initialBoard);
 
-  return (
-    <div className={styles.board}>
-      {initialBoard.map((item) => {
-        return item;
-      })}
-    </div>
-  );
+  const handleClick = (props) => {
+    console.log(props);
+  };
+
+  let board = initialBoard.map((obj, key) => {
+    return (
+      <Case
+        key={key}
+        row={obj.row}
+        col={obj.col}
+        player={obj.player}
+        color={obj.color}
+        name={obj.name}
+        OnClick={handleClick}
+      />
+    );
+  });
+  return <div className={styles.board}>{board}</div>;
 };
 
 export default Board;

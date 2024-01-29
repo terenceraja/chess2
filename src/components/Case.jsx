@@ -1,18 +1,9 @@
 import React from "react";
 import styles from "../styles/Case.module.css";
 
-const Case = ({
-  row,
-  col,
-  name,
-  color,
-  OnClick,
-  player,
-  activate,
-  highlight,
-}) => {
+const Case = ({ row, col, name, color, OnClick, player }) => {
   const handleClick = () => {
-    OnClick({ row, col, name, player, activate, highlight });
+    OnClick({ row, col, name, player, color });
   };
 
   return (
