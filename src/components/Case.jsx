@@ -1,20 +1,44 @@
 import React from "react";
 import styles from "../styles/Case.module.css";
 
-const Case = ({ row, col, name, color, OnClick, player }) => {
+const Case = ({
+  row,
+  col,
+  name,
+  color,
+  OnClick,
+  player,
+  border,
+  highlighted,
+  highlightedBy,
+}) => {
   const handleClick = () => {
-    OnClick({ row, col, name, player, color });
+    OnClick({
+      row,
+      col,
+      name,
+      player,
+      color,
+      border,
+      highlighted,
+      highlightedBy,
+    });
   };
 
   return (
     <div
       onClick={() => handleClick()}
       className={styles.case}
-      style={{ backgroundColor: color, outline: "5px solid yellow" }}
+      style={{ backgroundColor: color }}
     >
       <span>
         {row} / {col}
       </span>
+      {highlighted ? (
+        <span style={{ backgroundColor: "yellow" }}>choose?</span>
+      ) : (
+        <></>
+      )}
       <span
         style={
           player === 1

@@ -11,7 +11,7 @@ export const initiate = () => {
       }
 
       function determineName(j, pieceProp) {
-        if (i === 1 || i === 8) return pieceProp[j - 1];
+        if (i === 1 || i === 8) return pieceProp[j];
         if (i === 2 || i === 7) return pieceProp[0];
         return "";
       }
@@ -38,6 +38,8 @@ export const initiate = () => {
         color: determineColor(i, j),
         player: determinePlayer(i),
         name: determineName(j, pieceProp),
+        highlighted: false,
+        hightlightedBy: {},
       };
 
       slots.push(slot);
