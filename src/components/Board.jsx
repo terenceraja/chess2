@@ -13,20 +13,50 @@ const Board = () => {
     setBoard(initialBoard);
   }, []);
 
+  // PLAYER CLICKS ON A CASE
   const handleClick = (props) => {
-    ///////////EXECUTE///////////////
-    // if (props.highlighted) {
-    //   let updatedBoard = board.map((obj) => {
-    //     if (obj.row === props.row + 1 && obj.col === props.col) {
-    //       return { ...obj, highlighted: true };
-    //     }
-    //     return obj;
-    //   });
-    // }
-
     //PAWN///////
+    ///////////EXECUTE///////////////
+    console.log(board);
+
+    //execute if case clicked was highlighted (player executes a move)
+    if (props.highlighted) {
+      //loops the board to update
+      let updatedBoard = board.map((obj) => {
+        //at the highlighted case
+        if (
+          (obj.row === props.row && obj.col === props.col) ||
+          obj.highlighted
+        ) {
+          // replaces case's props to highlightedBy (player/piece that chose the move)
+          return {
+            ...obj,
+            name: obj.highlightedBy.name,
+            player: props.highlightedBy.player,
+            highlighted: false,
+            highlightedBy: {},
+          };
+        }
+
+        // replace the case of the player/piece that chose to empty case
+        if (
+          obj.row === props.highlightedBy.row &&
+          obj.col === props.highlightedBy.col
+        ) {
+          return { ...obj, name: "", player: null };
+        }
+
+        //if nothing then return previous case state
+        return obj;
+      });
+
+      //update board
+      setBoard(updatedBoard);
+      console.log(updatedBoard);
+    }
+
     //HIGHLIGHT/////////////////////////////////
-    // FOR PLAYER 1
+    // HIGHLIGHTS FOR PLAYER 1
     if (props.player === 1) {
       let updatedBoard = board.map((obj) => {
         if (obj.row === props.row + 1 && obj.col === props.col) {
@@ -36,19 +66,26 @@ const Board = () => {
       });
 
       setBoard(updatedBoard);
-      console.log(updatedBoard);
     }
 
-    //FOR PLAYER 2
+    //HIGHLIGHTS FOR PLAYER 2
     if (props.player === 2) {
       let updatedBoard = board.map((obj) => {
         if (obj.row === props.row - 1 && obj.col === props.col) {
           return { ...obj, highlighted: true, highlightedBy: props };
         }
+        if (
+          (obj.row === props.row - 1 && obj.col === props.col - 1) ||
+          (obj.row === props.row - 1 && obj.col === props.col + 1)
+        ) {
+          if (obj.player === 1) {
+            return { ...obj, highlighted: true, highlightedBy: props };
+            console.log("kill");
+          }
+        }
         return obj;
       });
       setBoard(updatedBoard);
-      console.log(updatedBoard);
     }
   };
   //HIGHLIGHT/////////////////////////////////

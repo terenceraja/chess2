@@ -8,7 +8,6 @@ const Case = ({
   color,
   OnClick,
   player,
-  border,
   highlighted,
   highlightedBy,
 }) => {
@@ -18,8 +17,7 @@ const Case = ({
       col,
       name,
       player,
-      color,
-      border,
+
       highlighted,
       highlightedBy,
     });
@@ -33,12 +31,12 @@ const Case = ({
     >
       <span>
         {row} / {col}
+        {highlighted ? (
+          <span style={{ backgroundColor: "yellow" }}>choose?</span>
+        ) : (
+          <></>
+        )}
       </span>
-      {highlighted ? (
-        <span style={{ backgroundColor: "yellow" }}>choose?</span>
-      ) : (
-        <></>
-      )}
       <span
         style={
           player === 1

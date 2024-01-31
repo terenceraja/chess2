@@ -39,7 +39,7 @@ export const initiate = () => {
         player: determinePlayer(i),
         name: determineName(j, pieceProp),
         highlighted: false,
-        hightlightedBy: {},
+        highlightedBy: {},
       };
 
       slots.push(slot);
