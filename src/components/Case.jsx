@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../styles/Case.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChessPawn } from "@fortawesome/free-solid-svg-icons";
 
 const Case = ({
   row,
@@ -46,6 +48,25 @@ const Case = ({
       >
         {name}
       </span>
+      {name === "P" && player === 2 ? (
+        <FontAwesomeIcon
+          icon={faChessPawn}
+          size="2xl"
+          style={{ color: "#63E6BE" }}
+        />
+      ) : (
+        <></>
+      )}
+
+      {name === "P" && player === 1 ? (
+        <FontAwesomeIcon
+          icon={faChessPawn}
+          size="2xl"
+          style={{ color: "#FFD43B" }}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
